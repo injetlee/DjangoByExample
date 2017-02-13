@@ -53,7 +53,8 @@ def post_share(request, post_id):
             print(message)
             print('*******************')
             print(subject)
-            send_mail(subject, message, 'liyingjie26@126.com', [cd['to']])
+            send_mail(subject, message, 'liyingjie26@126.com',
+                      [cd['to']], fail_silently=False)
             sent = True
     else:
         form = EmailPostForm()
