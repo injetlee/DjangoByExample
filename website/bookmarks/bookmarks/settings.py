@@ -112,3 +112,6 @@ EMAIL_HOST_USER = 'liyingjie26@126.com'
 EMAIL_HOST_PASSWORD = 'ipnumkmbpiyteftt'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
