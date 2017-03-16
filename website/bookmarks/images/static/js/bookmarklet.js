@@ -85,6 +85,29 @@
 
   function bookmarklet(msg){
     //here goes our bookmarklet code
+    var css = jQuery('<link>');
+    css.attr({
+      rel:'stylesheet',
+      type:'text/css',
+      href:static_url + 'css/bookmarklet.css?r=' + Math.floor(Math.random()*999999999999999999)
+    });
+    jQuery('head').append(css)
+    box_html = '<div id="bookmarklet"><a href="#" id="close">&times;</a><h1>Select an image to bookmark:</h1><div class="images"></div></div>';
+    jQuery('body').append(box_html);
+    jQuery('#bookmarklet').click(function(){
+      jQuery('#bookmarklet').remove();
+    });
+    jQuery.each(jQuery('img[src$="jpg"]'),function(index,image){
+      if(jQuery(image).width()>=min_width && jQuery(image).height()>=min_height){
+        image_url = jQuery(image).attr('src');
+        jQuery('#bookmarklet.image').append('<a href="#"><img src="'+image_url + '"/></a>');
+      }
+    })
+    jQuery('#bookmarklet.image a').click(function(e){
+      selected_image = jQuery(this).children('img').attr('src');
+      jQuery('#bookmarklet').hide();
+      window.open(side_url + 'image/create/?url=' + encodeURIComponent(selected_image)+'&title=' = encodeURIComponent(jQuery('title').text()),'_blank');
+    })
   };
   //check if jquery is loaded
   if(typeof window.jQuery != 'undefined'){
